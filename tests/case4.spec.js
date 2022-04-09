@@ -13,10 +13,15 @@ test.describe('Case 4', () => {
  
         await aerospaceLogistics.acceptTerms.click();
 
-        const [page1] = await Promise.all([
+        const [ download ] = await Promise.all([
           page.waitForEvent('popup'),
+          //page.waitForEvent('download'),
           page.locator('text=Download white paper').click()
         ]);
+
+        // const path = await download.path();
+        // console.log(path);
+
       });
 
 });
