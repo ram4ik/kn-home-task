@@ -1,6 +1,6 @@
 const { test, expect, request  } = require('@playwright/test');
 
-const login = {userName: "kh_user_32",password: "@Qwerty123!"};
+const login = {userName: "kh_user_38",password: "@Qwerty123!"};
 
 let userID = "";
 let token = "";
@@ -40,6 +40,10 @@ test.describe('Case 3', async() => {
 
     test('Add one book to the collection', async ({ request }) => {
         const responseAB = await request.post("https://demoqa.com/BookStore/v1/Books", {
+            
+            headers: {
+                Authorization: `token ${token}`,
+            },
             data: {
                 userId: userID,
                 collectionOfIsbns: [
@@ -47,8 +51,8 @@ test.describe('Case 3', async() => {
                         isbn: bookISBN
                     }
                 ]
-            },
-            headers: {token: token}
+            }
+            
         });
         console.log(responseAB);
         expect(responseAB.ok()).toBeTruthy();
