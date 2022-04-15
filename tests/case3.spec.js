@@ -94,7 +94,12 @@ test.describe('Case 3', async() => {
     });
 
     test('Access your profile and check if the added book is displayed there', async ({ request }) => {
-
+        const response = await request.get("https://demoqa.com/BookStore/v1/Book?ISBN=" + newBookISBN, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        expect(response.ok()).toBeTruthy();
     });
 
     test('Delete all books', async ({ request }) => {
